@@ -25,7 +25,7 @@
   * Concepts: dynos
   * Creating application
   * Preparing your web application
-  * Deployment
+  * Deployment (from a command prompt and using interface)
   * Connecting to Git for CI
   * Complications
     * CI using bitbucket
