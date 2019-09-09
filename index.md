@@ -30,6 +30,8 @@
   * Complications
     * CI using bitbucket
 * Appendix
+  * How to save on hosting
+    * AWS Elastic Beanstalk
   * Sponsors
     * SaaS Forge - where your next SaaS starts.
   
