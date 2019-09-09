@@ -1,0 +1,4 @@
+# Chapter I. Deployment to AWS Elastic Beanstalk
+## Basics of deployment
+### Everything starts from account
+Before you start the deployment to AWS, you have to create an account. It's simple 
