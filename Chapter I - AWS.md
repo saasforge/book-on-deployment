@@ -58,6 +58,10 @@ eb init
 ```
 This command will ask you several questions and create eb config file when done. If you don't want to create SSH say **no** to the corresponding question, and select a **classic** load balancer when asked.
 
+First you have to choose a region. It should be the same region you created an application before:
+
+[EB CLI select a region](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_region.png)
+
 :warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
 
 Now, let's create an environment (an actual app). Execute:
@@ -68,6 +72,6 @@ or
 ```
 eb create <environment_name>
 ```
-:warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as prefix that can be changed. If run eb create <env-name> it will add a stupid prefix automatically.**
+:warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as prefix that can be changed. If run _eb create env-name_ it will add a stupid prefix automatically.**
 
 
