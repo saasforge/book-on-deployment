@@ -60,7 +60,7 @@ This command will ask you several questions and create eb config file when done.
 
 First you have to choose a region. It should be the same region you created an application before:
 
-[EB CLI select a region](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_region.png)
+![EB CLI select a region](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_region.png)
 
 :warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
 
