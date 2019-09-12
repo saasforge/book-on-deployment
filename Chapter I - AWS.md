@@ -14,7 +14,7 @@ At the very end they will require to verify your account by phone - using a voic
 
 After all these steps done you will able to chose from the plans: Basic (free), Developer, or Business. Don't worry about support - even on a free account there are ways to use their support (for example, to leave a feedback, or send an inquiry).
 
-*Somewhere in the process AWS will ask you about preferred region. You need to select it and then use it. I had a situation when AWS selected a region for me and I wasn't aware about it and was wondering why I couldn't find apps I already created (because they were not visible for the current region). Your current region is always on top:*
+**Somewhere in the process AWS will ask you about preferred region. You need to select it and then use it. I had a situation when AWS selected a region for me and I wasn't aware about it and was wondering why I couldn't find apps I already created (because they were not visible for the current region). Your current region is always on top:**
 
 ![The current account](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_Current_Region.png)
 
@@ -24,8 +24,30 @@ Now you need to go to Elastic Beanstalk. The first time it can be tricky. Just u
 
 ![Elastic Beanstalk](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/elastic-beanstalk-find.png)
 
+### Concepts: applications and environments
+
 When you open the Beanstalk Console, you will see the invitation to get started. Don't rush! First check which region you have there. Change it, then proceed. As for we are describing the process of deployment from your terminal, let's proceed this way.
 
 Click the Create New Application link on the right top, then enter its name.
 
-*Note. An application in terms of AWS is not what you use to think about. We found the terminology pretty confusing. What AWS says about application: "An Elastic Beanstalk application is a logical collection of Elastic Beanstalk components, including environments, versions, and environment configurations. In Elastic Beanstalk an application is conceptually similar to a folder." And it's not a folder where you have your applications's files as you may think, it's rather a folder where you have you multiple folders or apps containing applications. So, probably the best way is to think about "application" is to consider it as a set of applications.*
+**Note. An application in terms of AWS is not what you use to think about. We found the terminology pretty confusing. What AWS says about application: "An Elastic Beanstalk application is a logical collection of Elastic Beanstalk components, including environments, versions, and environment configurations. In Elastic Beanstalk an application is conceptually similar to a folder." And it's not a folder where you have your applications's files as you may think, it's rather a folder where you have you multiple folders or apps containing applications. So, probably the best way is to think about "application" is to consider it as a set of applications.**
+
+Okay, to confuse you even more, AWS called the apps "environments". We are going to create one soon, but first let's go back to your app's terminal.
+
+We suppose you already have your app ready for deployment. We are currently working with Python/Flask apps, so let's assume you already have one.
+
+### Elastic Beanstalk CLI
+Install EB CLI from [this AWS Page](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html). Just pick your OS, download pip (if not installed yet), and use the instruction from there to install EB CLI.
+
+After you've done, to check if it's installed, call in your terminal:
+
+![EB CLI check](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_CLI_check.png)
+
+**Note. BTW, it should not be a command prompt. Many IDEs like VS Code or PyCharm have terminals.**
+
+<span class="red1">aaa</span>
+<style>
+  .red1 {
+   color: red;
+  }
+</style>
