@@ -101,8 +101,6 @@ eb create <environment_name>
 ```
 :warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as prefix that can be changed. If run _eb create env-name_ it will add a stupid prefix automatically.**
 
-:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
-
 Creating a new environment may take some time (up to several minutes). After it's done, you can see your new application in the AWS Console:
 
 ![New application on AWS console](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env.png)
@@ -131,5 +129,33 @@ It may be a little bit tricky to make it work but you just need to know several 
 1. The main application name should be application.py (not app.py or flask.py or main.py or anything else).
 2. Do NOT add *FLASK_APP=application* to AWS environment variables.
 
+#### Deployment to AWS
 
+To deploy your application from the terminal,  just type:
+```
+eb init
+```
+During this process, the EB CLI will grab your code, pack it into the archive, save to the AWS S3 and deploy to the server.
 
+:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
+
+:point_right: **If your app uses NPM to install and bundle code, you would probably run the production configuration before deploying your prod version.**
+
+### Viewing logs
+Sometimes not everything is going right. If you see "Internal Server Error" in the browser instead of your nice looking app, you would like to look at the logs.
+
+To view logs, go to your app's overview page, click Logs on the left and then requrest the last 100 rows (or the whole log):
+![View logs](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_logs.png)
+
+The link will be generated and you will see it in the table below. 
+
+:warning: **If you click the link the log will be open in the browser what can make worse its performance. Instead you would just download .txt file to your local computer.**
+
+### Accessing app's versions archives
+To look and / or download all app's versions that ever been deployed go to AWS S3 simple storage. To find the link, click the **Services** link on the left of your console and then click **S3**:
+
+![S3 Access](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_S3.png)
+
+Then you will see the content of your S3 account. Click the bucket with name something like "elasticbeanstalk-region-4375839236", then a folder with your application's name, it contains all archived app's versions.
+
+## Custom domain and SSL/HTTPS
