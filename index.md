@@ -12,9 +12,10 @@
         * Init (create or select an application)
         * Create a new environment
         * If your application is Flask-based
-      * Prepare your web application
-      * Deployment (from a command prompt and using interface)
-    * SSL, HTTPS, and custom domains
+        * Deployment to AWS
+      * Viewing logs
+      * Accessing app's versions archives
+    * Custom domain and SSL/HTTPS
       * Creating your certificate
       * Registration your domain name
       * Set up HTTPS with AWS
