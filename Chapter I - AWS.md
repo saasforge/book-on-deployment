@@ -62,6 +62,29 @@ First you have to choose a region. It should be the same region you created an a
 
 ![EB CLI select a region](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_region.png)
 
+Then CLI will ask for your credentials. You need to open your account and retrieve your access id and a secret key:
+![AWS account](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_account.png)
+
+It may then ask you where to proceed, click **Continue to Security Credentials**:
+
+![Select credentials](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_console_question.png)
+
+If it's not shown just click on Access Keys tab and then click the **Create New Access Key**:
+
+![Access Keys](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_console_create_access_key.png)
+
+It will generate 2 keys for you, you can copy them or download:
+
+![Get your keys](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_console_get_access_key.png)
+
+Then you can enter keys in your terminal.
+
+The next question will be an application to use (or to create). Select that already exists (or you may create a new one). 
+
+Then it will ask a platform and if you want to set up SSH for your instances (say "no").
+
+After it finished the new 
+
 :warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
 
 Now, let's create an environment (an actual app). Execute:
