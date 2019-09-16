@@ -37,6 +37,7 @@ Okay, to confuse you even more, AWS called the apps "environments". We are going
 We suppose you already have your app ready for deployment. We are currently working with Python/Flask apps, so let's assume you already have one.
 
 ### Elastic Beanstalk CLI
+#### Init (create or select an application)
 Install EB CLI from [this AWS Page](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html). Just pick your OS, download pip (if not installed yet), and use the instruction from there to install EB CLI.
 
 After you've done, to check if it's installed, call in your terminal:
@@ -83,11 +84,14 @@ The next question will be an application to use (or to create). Select that alre
 
 Then it will ask a platform and if you want to set up SSH for your instances (say "no").
 
-After it finished the new 
+During the init process EB creates a folder called **.elasticbeanstalk** in the root folder with **config.yml** file inside:
 
-:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
+![EB Config file, almost empty](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_config.png)
 
-Now, let's create an environment (an actual app). Execute:
+#### Create a new environment
+
+Now we should create a new environment (aka application in terms of AWS). Type in your terminal:
+
 ```
 eb create
 ```
@@ -96,5 +100,14 @@ or
 eb create <environment_name>
 ```
 :warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as prefix that can be changed. If run _eb create env-name_ it will add a stupid prefix automatically.**
+
+:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
+
+Creating a new environment may take some time (up to several minutes). After it's done, you can see your new application in the AWS Console:
+
+![New application on AWS console](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env.png)
+
+
+
 
 
