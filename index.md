@@ -8,7 +8,10 @@
       * Everything starts from account
       * Concepts: applications and environments
       * Create your application
-      * Create environmets
+      * Elastic Beanstalk CLI
+        * Init (create or select an application)
+        * Create a new environment
+        * If your application is Flask-based
       * Prepare your web application
       * Deployment (from a command prompt and using interface)
     * SSL, HTTPS, and custom domains
