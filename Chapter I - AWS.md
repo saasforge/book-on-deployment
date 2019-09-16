@@ -107,7 +107,29 @@ Creating a new environment may take some time (up to several minutes). After it'
 
 ![New application on AWS console](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env.png)
 
+Now you need to configure your application. The minimal thing you probably would do is to set up the environment variables. 
 
+Click on the green rectangle of the environment and you will see the Overview page:
+
+![Environment overview](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env_overview.png)
+
+Click on the **Config** link on the left, and then, when the console will be loaded, click the **Modify** link:
+
+![Environment console](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env_vars.png)
+
+Scroll the page down and enter your environment variables:
+
+![Environment variables](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/EB_env_vars_config.png)
+
+Don't forget to click the **Apply** button else data will not be saved.
+
+#### If your application is Flask-based
+The process is described [here](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html).
+
+It may be a little bit tricky to make it work but you just need to know several conventions:
+
+1. The main application name should be application.py (not app.py or flask.py or main.py or anything else).
+2. Do NOT add *FLASK_APP=application* to AWS environment variables.
 
 
 
