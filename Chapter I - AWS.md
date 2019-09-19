@@ -194,9 +194,16 @@ If you think you may have a subdomain, it's a good idea to add a wild card subdo
 ![AWS Certificate Manager domains]()
 
 Use the **Add another name to this certificate** to add a new record. When done, click the **Next** button.
-#### Validate
 
+#### Validate
+You will be asked the method of validation your request. Select the **Email validation** and click the **Review** button, then, after you make sure everything is fine, click the **Confirm and request** button.
+
+You will see something like that:
+
+![AWS Certificate manager validation]()
+
+Expand records to see details, also you can download the spreadsheet having the same data.
 
 #### Finish setting SSL
 
-### Redirecting from HTTP to HTTPS
+#### Redirecting from HTTP to HTTPS
