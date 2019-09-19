@@ -177,3 +177,26 @@ Then we need to redirect from our web app hosted on AWS to our custom domain. It
 
 ![Namecheap new record](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/domain_provider_new_record.png)
 
+
+### SSL certificate on AWS
+
+#### Obtain certificate
+First step is to obtain a free SSL certificate issued by AWS. Open your AWS console, and there, using search find **Certificate manager**. If you don't have any certificates yet when you click it you will see the following screen. Select **Provision certificates**.
+
+![AWS Certificate Manager]()
+
+Then you will be asked which certificate you want - public or private. Select **Request a public certificate** and then click the **Request a certificate** button.
+
+If you think you may have a subdomain, it's a good idea to add a wild card subdomains. So, you need to provide 2 domains:
+- yourdomain.com (for a bare domain)
+- \*.yourdomain.com (a wildcard for subdomain)
+
+![AWS Certificate Manager domains]()
+
+Use the **Add another name to this certificate** to add a new record. When done, click the **Next** button.
+#### Validate
+
+
+#### Finish setting SSL
+
+### Redirecting from HTTP to HTTPS
