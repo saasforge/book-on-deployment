@@ -183,7 +183,7 @@ Then we need to redirect from our web app hosted on AWS to our custom domain. It
 #### Obtain certificate
 First step is to obtain a free SSL certificate issued by AWS. Open your AWS console, and there, using search find **Certificate manager**. If you don't have any certificates yet when you click it you will see the following screen. Select **Provision certificates**.
 
-![AWS Certificate Manager]()
+![AWS Certificate Manager](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager.png)
 
 Then you will be asked which certificate you want - public or private. Select **Request a public certificate** and then click the **Request a certificate** button.
 
@@ -191,7 +191,7 @@ If you think you may have a subdomain, it's a good idea to add a wild card subdo
 - yourdomain.com (for a bare domain)
 - \*.yourdomain.com (a wildcard for subdomain)
 
-![AWS Certificate Manager domains]()
+![AWS Certificate Manager domains](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager_domains.png)
 
 Use the **Add another name to this certificate** to add a new record. When done, click the **Next** button.
 
@@ -200,10 +200,27 @@ You will be asked the method of validation your request. Select the **Email vali
 
 You will see something like that:
 
-![AWS Certificate manager validation]()
+![AWS Certificate manager validation](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_domain_certificate_validation.png)
 
-Expand records to see details, also you can download the spreadsheet having the same data.
+Expand records to see details, also you can download the spreadsheet having the same data. No you need to create new records in your domain provider console. Go there, and create a separate records for each of your domains you want to get certificate for.
+
+- Type of record: CNAME
+- Host: The first part of **Name** column from AWS table. (For example, if Name is \_f75fd16ce62eaaf911587618b1d8aba6.asdfas.com. you just copy \_f75fd16ce62eaaf911587618b1d8aba6)
+- Value: Value from the AWS table
+- TTL: automatic
+
+Save your records. Then come back to the AWS console and click the **Continue** button. You will see your records pending validation:
+
+![AWS Certificate Manager pending validation](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager_pending.png)
+
+Then click the **Refresh** button to check if they validated your requests and issued the certificates. Usually it takes from several minutes to several hours. If after several hours they are still pending validation, check if you entered CNAME records properly, saved data and all.
+
+![AWS Certificate Manager refresh button](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager_refresh.png)
+
+When certificate is issued you will the "Issued" status.
 
 #### Finish setting SSL
+
+After the certificates are ready we need to set up the load balancer. Go to your application console, click the environment page, then click the **Configuration** link on the left, find the **Load balancer** square and click the **Modify** button.
 
 #### Redirecting from HTTP to HTTPS
