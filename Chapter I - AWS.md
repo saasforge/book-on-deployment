@@ -159,3 +159,21 @@ To look and / or download all app's versions that ever been deployed go to AWS S
 Then you will see the content of your S3 account. Click the bucket with name something like "elasticbeanstalk-region-4375839236", then a folder with your application's name, it contains all archived app's versions.
 
 ## Custom domain and SSL/HTTPS
+
+### Register your doman and redirect
+
+You can register your domain using any domain provider. We prefer use Namecheap because they have great prices and, what is more important, great service. So, you first step is to register your unique domain name with a provider on your choice.
+
+Then we need to redirect from our web app hosted on AWS to our custom domain. It's very easy.
+
+1. Open your Elastic Beanstalk console, navigate to the application and then to the environment page. You will find the link to your app on the top:
+
+![You app url](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_app_url.png)
+
+2. Open your domain provider's console, find the page to manage your domain, and add the following record:
+- Type of records: CNAME
+- Host: www
+- Value: copied url to your application (:warning: Remove **https://** from the url when create the record)
+
+![Namecheap new record](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/domain_provider_new_record.png)
+
