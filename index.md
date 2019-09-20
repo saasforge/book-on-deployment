@@ -36,6 +36,6 @@
   * How to save on hosting
     * AWS Elastic Beanstalk
   * How to choose a hosting provider (AWS vs Heroku)
-  * Sponsors
+  * Authors
     * SaaS Forge - where your next SaaS starts.
   
