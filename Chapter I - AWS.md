@@ -223,4 +223,29 @@ When certificate is issued you will the "Issued" status.
 
 After the certificates are ready we need to set up the load balancer. Go to your application console, click the environment page, then click the **Configuration** link on the left, find the **Load balancer** square and click the **Modify** button.
 
+On the **Modify load balancer page** (it should be classic one as described in **Init (create or select an application)**) page click the **Add listener** button and enter the following values:
+
+![AWS Load balancer listener](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_load_balancer_listener.png)
+
+In the **SSL certificate** dropdown select your certificate, if it's empty try to refresh (the button on the right). Save the new listener. Then scroll down the load balancer page and click the **Apply** button.
+
+
 #### Redirecting from HTTP to HTTPS
+
+Now we want our visitors to be redirected to https:// protocol automatically. It's pretty simple. You need to open your project's folder, create a **.ebextensions** folder and inside create one file called **01.config**. Add the following code to this file:
+
+```
+files:
+    "/etc/httpd/conf.d/ssl_rewrite.conf":
+        mode: "000644"
+        owner: root
+        group: root
+        content: |
+            RewriteEngine On
+            <If "-n '%{HTTP:X-Forwarded-Proto}' && %{HTTP:X-Forwarded-Proto} != 'https'">
+            RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+            </If>
+```
+This code will provide a smooth redirection.
+
+That's it!
