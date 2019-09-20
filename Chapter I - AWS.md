@@ -160,7 +160,7 @@ Then you will see the content of your S3 account. Click the bucket with a name s
 
 ## Custom domain and SSL/HTTPS
 
-### Register your domain and redirect
+### Register your domain and redirection
 
 You can register your domain using any domain provider. We prefer use Namecheap because they have great prices and, what is more important, great service. So, your first step is to register your unique domain name with a provider on your choice.
 
