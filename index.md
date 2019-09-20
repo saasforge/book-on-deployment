@@ -16,14 +16,13 @@
       * Viewing logs
       * Accessing app's versions archives
     * Custom domain and SSL/HTTPS
-      * Creating your certificate
-      * Registration your domain name
-      * Set up HTTPS with AWS
-      * Adding a custom domain
+      * Register your domain and redirection
+      * SSL certificate on AWS
+      * Redirection from HTTP to HTTPS
     * Complications
       * Several profiles at once
       * Subdomains
-    * Programmatic deployment
+    * Programmatic deployment (Python)
 * Chapter II. Heroku
   * Everything starts from account
   * Concepts: dynos
@@ -36,6 +35,7 @@
 * Appendix
   * How to save on hosting
     * AWS Elastic Beanstalk
+  * How to choose a hosting provider (AWS vs Heroku)
   * Sponsors
     * SaaS Forge - where your next SaaS starts.
   
