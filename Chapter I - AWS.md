@@ -2,7 +2,7 @@
 ## Basics of deployment
 ### Everything starts from account
 Before you start the deployment to AWS, you have to create an account. It's simple. 
-All you need to enter is your email and password. Then they will ask you to provide more details: type of your account (personal or professional). They will also ask for a credit card information (even if you are not going to pay). 
+All you need to enter is your email and password. Then they will ask you to provide more details: type of your account (personal or professional). They will also ask for credit card information (even if you are not going to pay). 
 
 ![AWS Account](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/aws-create-account.png)
 
@@ -10,11 +10,11 @@ All you need to enter is your email and password. Then they will ask you to prov
 
 ![Select account](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/aws-select-account.png)
 
-At the very end they will require to verify your account by phone - using a voice message or SMS.
+At the very end, they will require to verify your account by phone - using a voice message or SMS.
 
-After all these steps done you will able to chose from the plans: Basic (free), Developer, or Business. Don't worry about support - even on a free account there are ways to use their support (for example, to leave a feedback, or send an inquiry).
+After all these steps are done you will able to choose from the plans: Basic (free), Developer, or Business. Don't worry about support - even on a free account, there are ways to use their support (for example, to leave feedback, or send an inquiry).
 
-:warning: **Somewhere in the process AWS will ask you about preferred region. You need to select it and then use it. I had a situation when AWS selected a region for me and I wasn't aware about it and was wondering why I couldn't find apps I already created (because they were not visible for the current region). Your current region is always on top:**
+:warning: **Somewhere in the process AWS will ask you about the preferred region. You need to select it and then use it. I had a situation when AWS selected a region for me and I wasn't aware of it and was wondering why I couldn't find apps I already created (because they were not visible for the current region). Your current region is always on top:**
 
 ![The current account](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_Current_Region.png)
 
@@ -30,9 +30,9 @@ When you open the Beanstalk Console, you will see the invitation to get started.
 
 Click the Create New Application link on the right top, then enter its name.
 
-:point_right: **Note. An application in terms of AWS is not what you use to think about. We found the terminology pretty confusing. What AWS says about application: "An Elastic Beanstalk application is a logical collection of Elastic Beanstalk components, including environments, versions, and environment configurations. In Elastic Beanstalk an application is conceptually similar to a folder." And it's not a folder where you have your applications's files as you may think, it's rather a folder where you have you multiple folders or apps containing applications. So, probably the best way is to think about "application" is to consider it as a set of applications.**
+:point_right: **Note. An application in terms of AWS is not what you use to think about. We found the terminology pretty confusing. What AWS says about the application: *"An Elastic Beanstalk application is a logical collection of Elastic Beanstalk components, including environments, versions, and environment configurations. In Elastic Beanstalk an application is conceptually similar to a folder."* And it's not a folder where you have your application's files as you may think, it's rather a folder where you have you multiple folders containing applications. So, probably the best way is to think about "application" is to consider it as a set of applications.**
 
-Okay, to confuse you even more, AWS called the apps "environments". We are going to create one soon, but first let's go back to your app's terminal.
+Okay, to confuse you even more, AWS called the apps "environments". We are going to create one soon, but first, let's go back to your app's terminal.
 
 We suppose you already have your app ready for deployment. We are currently working with Python/Flask apps, so let's assume you already have one.
 
@@ -57,7 +57,7 @@ In this folder in the terminal print the following command:
 ```
 eb init
 ```
-This command will ask you several questions and create eb config file when done. If you don't want to create SSH say **no** to the corresponding question, and select a **classic** load balancer when asked.
+This command will ask you several questions and create eb config file when done. If you don't want to create SSH say **no** to the corresponding question and select a **classic** load balancer when asked.
 
 First you have to choose a region. It should be the same region you created an application before:
 
@@ -70,7 +70,7 @@ It may then ask you where to proceed, click **Continue to Security Credentials**
 
 ![Select credentials](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_console_question.png)
 
-If it's not shown just click on Access Keys tab and then click the **Create New Access Key**:
+If it's not shown just click on the **Access Keys** tab and then click the **Create New Access Key**:
 
 ![Access Keys](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_console_create_access_key.png)
 
@@ -99,7 +99,7 @@ or
 ```
 eb create <environment_name>
 ```
-:warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as prefix that can be changed. If run _eb create env-name_ it will add a stupid prefix automatically.**
+:warning: **Note. It's better to start with eb create command - it will ask you env name later, as well as a prefix that can be changed. If run _eb create env-name_ it will add a stupid prefix automatically.**
 
 Creating a new environment may take some time (up to several minutes). After it's done, you can see your new application in the AWS Console:
 
@@ -137,32 +137,32 @@ eb init
 ```
 During this process, the EB CLI will grab your code, pack it into the archive, save to the AWS S3 and deploy to the server.
 
-:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets source from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
+:warning: **WARNING! If the local folder contains .git folder it should point to the right source. (In my case, I accidentally copied it from other folder and AWS gets the source code from there). So, you use a proper git folder or you shouldn't have .git folder at all.**
 
 :point_right: **If your app uses NPM to install and bundle code, you would probably run the production configuration before deploying your prod version.**
 
 ### Viewing logs
 Sometimes not everything is going right. If you see "Internal Server Error" in the browser instead of your nice looking app, you would like to look at the logs.
 
-To view logs, go to your app's overview page, click Logs on the left and then requrest the last 100 rows (or the whole log):
+To view logs, go to your app's overview page, click Logs on the left and then request the last 100 rows (or the whole log):
 ![View logs](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_logs.png)
 
 The link will be generated and you will see it in the table below. 
 
-:warning: **If you click the link the log will be open in the browser what can make worse its performance. Instead you would just download .txt file to your local computer.**
+:warning: **If you click the link the log will be open in the browser what can make worse its performance. Instead, you would just download .txt file to your local computer.**
 
 ### Accessing app's versions archives
 To look and / or download all app's versions that ever been deployed go to AWS S3 simple storage. To find the link, click the **Services** link on the left of your console and then click **S3**:
 
 ![S3 Access](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_S3.png)
 
-Then you will see the content of your S3 account. Click the bucket with name something like "elasticbeanstalk-region-4375839236", then a folder with your application's name, it contains all archived app's versions.
+Then you will see the content of your S3 account. Click the bucket with a name something like "elasticbeanstalk-region-4375839236", then a folder with your application's name, it contains all archived app's versions.
 
 ## Custom domain and SSL/HTTPS
 
-### Register your doman and redirect
+### Register your domain and redirect
 
-You can register your domain using any domain provider. We prefer use Namecheap because they have great prices and, what is more important, great service. So, you first step is to register your unique domain name with a provider on your choice.
+You can register your domain using any domain provider. We prefer use Namecheap because they have great prices and, what is more important, great service. So, your first step is to register your unique domain name with a provider on your choice.
 
 Then we need to redirect from our web app hosted on AWS to our custom domain. It's very easy.
 
@@ -173,7 +173,7 @@ Then we need to redirect from our web app hosted on AWS to our custom domain. It
 2. Open your domain provider's console, find the page to manage your domain, and add the following record:
 - Type of records: CNAME
 - Host: www
-- Value: copied url to your application (:warning: Remove **https://** from the url when create the record)
+- Value: copied url to your application (:warning: Remove **https://** from the url when creating the record)
 
 ![Namecheap new record](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/domain_provider_new_record.png)
 
@@ -181,7 +181,7 @@ Then we need to redirect from our web app hosted on AWS to our custom domain. It
 ### SSL certificate on AWS
 
 #### Obtain certificate
-First step is to obtain a free SSL certificate issued by AWS. Open your AWS console, and there, using search find **Certificate manager**. If you don't have any certificates yet when you click it you will see the following screen. Select **Provision certificates**.
+The first step is to obtain a free SSL certificate issued by AWS. Open your AWS console, and there, using search find **Certificate manager**. If you don't have any certificates yet when you click it you will see the following screen. Select **Provision certificates**.
 
 ![AWS Certificate Manager](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager.png)
 
@@ -202,7 +202,7 @@ You will see something like that:
 
 ![AWS Certificate manager validation](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_domain_certificate_validation.png)
 
-Expand records to see details, also you can download the spreadsheet having the same data. No you need to create new records in your domain provider console. Go there, and create a separate records for each of your domains you want to get certificate for.
+Expand records to see details, also you can download the spreadsheet having the same data. Now you need to create new records in your domain provider console. Go there, and create separate records for each of your domains you want to get a certificate for.
 
 - Type of record: CNAME
 - Host: The first part of **Name** column from AWS table. (For example, if Name is \_f75fd16ce62eaaf911587618b1d8aba6.asdfas.com. you just copy \_f75fd16ce62eaaf911587618b1d8aba6)
@@ -213,11 +213,11 @@ Save your records. Then come back to the AWS console and click the **Continue** 
 
 ![AWS Certificate Manager pending validation](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager_pending.png)
 
-Then click the **Refresh** button to check if they validated your requests and issued the certificates. Usually it takes from several minutes to several hours. If after several hours they are still pending validation, check if you entered CNAME records properly, saved data and all.
+Then click the **Refresh** button to check if they validated your requests and issued the certificates. Usually, it takes from several minutes to several hours. If after several hours they are still pending validation, check if you entered CNAME records properly, saved data and all.
 
 ![AWS Certificate Manager refresh button](https://github.com/saasforge/deployment-to-aws-and-heroku-book/blob/master/Illustrations/AWS_certificate_manager_refresh.png)
 
-When certificate is issued you will the "Issued" status.
+When the certificate is issued you will the "Issued" status.
 
 #### Finish setting SSL
 
