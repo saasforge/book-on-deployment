@@ -230,7 +230,7 @@ On the **Modify load balancer page** (it should be classic one as described in *
 In the **SSL certificate** dropdown select your certificate, if it's empty try to refresh (the button on the right). Save the new listener. Then scroll down the load balancer page and click the **Apply** button.
 
 
-#### Redirecting from HTTP to HTTPS
+### Redirection from HTTP to HTTPS
 
 Now we want our visitors to be redirected to https:// protocol automatically. It's pretty simple. You need to open your project's folder, create a **.ebextensions** folder and inside create one file called **01.config**. Add the following code to this file:
 
