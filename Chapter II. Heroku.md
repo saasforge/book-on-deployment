@@ -13,7 +13,7 @@ Then click the **Billing** tab and click the **Add credit card** button.
 
 Heroku introduced "dynos" what are described as "lightweight Linux containers". Full information you can find in [Heroku docs](https://devcenter.heroku.com/articles/dynos). We, especially those who are from the Windows world, can consider a dyno as a type of applicatin (maybe it's wrong, but I can't find closer analogy). Dyno can be [free, hobby, standard, or performance](https://devcenter.heroku.com/articles/dyno-types). You always start from the free dyno. This type of dyno doesn't allow to link a custom domain and has other restrictions.
 
-### Application
+### Create an appplication and deploy
 
 Let's create an application. We will use the web interface. Go to your dashboard and click the **New** button, then select **Create new app**:
 ![Heroku create new app](https://github.com/saasforge/book-on-deployment/blob/master/Illustrations/Heroku_create_app.png)
@@ -102,4 +102,12 @@ So, basically it just means you install all packages and then ask webpack to run
 
 2. Tell Heroku that you want to run Node.js first, then Python. It can be done using [buildpacks](https://elements.heroku.com/buildpacks). To do so, open your app's page, click the **Settings** tab, scroll a little bit and find the **Buildpacks** section. Add buildpack, Node.js and Python:
 
-[Heroku buildpacks]()
+![Heroku buildpacks](https://github.com/saasforge/book-on-deployment/blob/master/Illustrations/Heroku_buildpack.png)
+
+### Custom domain and SSL
+
+Start from registering your domain at some domain provider. We use Namecheap because they have a really great services (and great prices). 
+
+:warning: Before you add a custom domain in Heroku, you should verify your account, see the **Everything starts from account** section. After you're done, open your application's page, click the **Settings** tab, scroll down to the **Domains and certificates** section. Click the **Add domain** button. Enter your registered domain, then open your domain provider's console and create the corresponding CNAME. Please refer the [Heroku docs](https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-subdomains) to see what you should provide in CNAME, but basically, it's your app heroku URL like *yourfullappurl.herokudns.com.*
+
+:warning: The URL you should enter in your domain provider is not your heroku app URL like *yourapp.herokuapp.com*.
