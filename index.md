@@ -26,10 +26,9 @@
 * Chapter II. Heroku
   * Everything starts from account
   * Concepts: dynos
-  * Creating application
-  * Preparing your web application
-  * Deployment (from a command prompt and using interface)
-  * Connecting to Git for CI
+  * Create an appplication and deploy
+  * Preparing app for a deployment (Flask-based apps)
+  * Custom domain and SSL
   * Complications
     * CI using bitbucket
 * Appendix
