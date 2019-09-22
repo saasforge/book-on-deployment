@@ -254,10 +254,10 @@ That's it!
 
 ### Several profiles at once
 
-Sometimes you want to experiment with different application: create and deploy them to AWS. To avoid additional payment you would create a separate account for every new app. In this situation you will face the conflict of AWS accounts when deploy. This problem can be solved with multiple profiles.
+Sometimes you want to experiment with the different applications: create and deploy them to AWS. To avoid additional payment you would create a separate account for every new app. In this situation, you will face the conflict of AWS accounts when deploy. This problem can be solved with multiple profiles.
 
 #### Edit AWS config file
-On you local machine, find a file called config in aws folder. It's usually under this path: *C:\Users\user_name\.aws\config* (for Windows, may be different on Mac computer).
+On you local machine, find a file called config in aws folder. It's usually under this path: *C:\Users\user_name\.aws\config* (for Windows, for Mac computer may be different ).
 
 For each account create a separate profile. To do so, just add these 3 lines for each profile:
 
@@ -267,6 +267,34 @@ aws_access_key_id = key
 aws_secret_access_key = access_key
 ```
 
-Profile name is the default one that EB created itself, or you name it.
+The profile name is the default one that EB created itself, or you name it.
 
-/project/.elasticbeanstalk/config.yml
+#### Edit your project's EB config file
+In your project's root folder find the following file *.elasticbeanstalk/config.yml* and in the **Global** section add the following string:
+
+```
+profile: profile_name
+```
+
+So, the finally your config file would look something like that:
+
+```
+branch-defaults:
+  default:
+    environment: env_name
+    group_suffix: null
+global:
+  application_name: app_name
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Python 3.6
+  default_region: region
+  platform_name: null
+  platform_version: null
+  profile: profile_name
+  repository: null
+  sc: null
+  workspace_type: Application
+```
+
+Deploy as usually using the command *eb deploy*.
