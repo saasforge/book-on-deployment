@@ -98,7 +98,7 @@ If your app is written in Python but it uses webpack to install packages you nee
 
 So, basically, it means that you install all packages and then ask webpack to run the corresponding configuration.
 
-:warning: Don't forget to provide a proper environment variable *env*, in our case it's *dev* or *prod*.
+:warning: **Don't forget to provide a proper environment variable *env*, in our case it's *dev* or *prod*.**
 
 2. Tell Heroku that you want to run Node.js first, then Python. It can be done using [buildpacks](https://elements.heroku.com/buildpacks). To do so, open your app's page, click the **Settings** tab, scroll a little bit and find the **Buildpacks** section. Add buildpack, Node.js, and Python:
 
