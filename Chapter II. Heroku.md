@@ -112,7 +112,7 @@ Then you need to upgrade your dyno. In your application's page click the **Resou
 
 After you're done, open your application's page, click the **Settings** tab, scroll down to the **Domains and certificates** section. Click the **Add domain** button. Enter your registered domain, then open your domain provider's console and create the corresponding CNAME. Please refer the [Heroku docs](https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-subdomains) to see what you should provide in CNAME, but basically, it's your app Heroku URL like *yourfullappurl.herokudns.com.*
 
-:warning: The URL you should enter in your domain provider is not your heroku app URL like *yourapp.herokuapp.com*.
+:warning: **The URL you should enter in your domain provider is not your heroku app URL like *yourapp.herokuapp.com*.**
 
 Below is the example of providing data in Namecheap console:
 
@@ -120,4 +120,4 @@ Below is the example of providing data in Namecheap console:
 
 After you're done, come back to the Heroku console and click the **Refresh status** button (it may take some time to update DNS records).
 
-:point_right: SSL certificate is created and updated automatically by Heroku.
+:point_right: **SSL certificate is created and updated automatically by Heroku.**
