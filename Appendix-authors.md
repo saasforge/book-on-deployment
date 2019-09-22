@@ -33,4 +33,4 @@ We also have [a book with 23 ideas of SaaS applications](https://www.saasforge.d
 10. Challenges and obstacles
 11. A tip for SaaS founders
 
-We also provide a consulting ($60/hour) to help you with choosing technologies, development roadmap, functionality etc. and custom development of SaaS applications based on our SaaS app templates (get quotes by [email](mailto:info@saasforge.dev)).
+We also provide a consulting ($60/hour) to help you with choosing technologies, development roadmap, functionality etc. and custom development of SaaS applications based on our SaaS app templates (get a quote by [email](mailto:info@saasforge.dev)).
