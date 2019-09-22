@@ -249,3 +249,24 @@ files:
 This code will provide a smooth redirection.
 
 That's it!
+
+## Complications
+
+### Several profiles at once
+
+Sometimes you want to experiment with different application: create and deploy them to AWS. To avoid additional payment you would create a separate account for every new app. In this situation you will face the conflict of AWS accounts when deploy. This problem can be solved with multiple profiles.
+
+#### Edit AWS config file
+On you local machine, find a file called config in aws folder. It's usually under this path: *C:\Users\user_name\.aws\config* (for Windows, may be different on Mac computer).
+
+For each account create a separate profile. To do so, just add these 3 lines for each profile:
+
+```
+[profile profile_name]
+aws_access_key_id = key
+aws_secret_access_key = access_key
+```
+
+Profile name is the default one that EB created itself, or you name it.
+
+/project/.elasticbeanstalk/config.yml
