@@ -329,12 +329,12 @@ def get_s3_credentials():
 
 We create here the EB client object that will do all the work.
 
-### Create the applicatoin version
+### Create the application version
 
-The first step is to create the appliucation version. As you remember all versions are stored as just regular acrhive files.
+The first step is to create the application version. As you remember all versions are stored as just regular archive files.
 
 ```
-# Checks if the environment exists and create a new one if not
+# Checks if the environment exists and creates a new one if not
 def check_env_exists(env_name):
     try:
         env = eb_client.describe_environments(
@@ -395,7 +395,7 @@ The first function is used for checking if the environment exists. This function
 
 ### Deploy the application version
 
-Deploy the application using the version lable you've got from the previous step.
+Deploy the application using the version label you've got from the previous step.
 
 ```
 def deploy_application(version_label):
@@ -439,9 +439,9 @@ def check_application_state():
         'error': 'Cannot obtain the application state. Maybe it\'s not been yet deployed.'
     }
 ```
-An AWS application has 2 important properties: status and health. The most important is health, the description from the official documentations:
+An AWS application has 2 important properties: status and health. The most important is health, the description from the official documentation:
 
-- **Red** : Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.
-- **Yellow** : Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.
-- **Green** : Indicates the environment is healthy and fully functional.
-- **Grey** : Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an UpdateEnvironment or RestartEnvironment request.
+- **Red**: Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.
+- **Yellow**: Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.
+- **Green**: Indicates the environment is healthy and fully functional.
+- **Grey**: Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an UpdateEnvironment or RestartEnvironment request.
