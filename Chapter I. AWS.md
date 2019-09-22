@@ -298,3 +298,150 @@ global:
 ```
 
 Deploy as usually using the command *eb deploy*.
+
+## Programmatic deployment (Python)
+Sometimes you want to do the deployment programmatically. Let's review the process using Python 3.
+
+### Library and credentials
+
+First of all, install *boto3* package. It's the official library for working with Amazon Web Services. The full documentation can be found [here](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html).
+
+```
+pip install boto3
+```
+
+In your code set up credentials:
+
+```
+import boto3
+
+eb_client = None
+
+def get_s3_credentials():
+    global eb_client
+
+    if eb_client is None:
+        eb_client = boto3.client('elasticbeanstalk',
+            aws_access_key_id = current_app.config['AWS_ACCESS_KEY_ID'],
+            aws_secret_access_key = current_app.config['AWS_SECRET_KEY'],
+            region_name='ca-central-1')
+```
+
+We create here the EB client object that will do all the work.
+
+### Create the applicatoin version
+
+The first step is to create the appliucation version. As you remember all versions are stored as just regular acrhive files.
+
+```
+# Checks if the environment exists and create a new one if not
+def check_env_exists(env_name):
+    try:
+        env = eb_client.describe_environments(
+            ApplicationName = aws_application_name,
+            EnvironmentNames = [
+                env_name
+            ]
+        )
+        if not len(env['Environments']):
+            env_result = eb_client.create_environment(
+                ApplicationName = aws_application_name,
+                EnvironmentName = env_name,
+                CNAMEPrefix = env_name,
+                SolutionStackName = '64bit Amazon Linux 2018.03 v2.8.3 running Python 3.6',
+                OptionSettings = [
+                    {
+                        'Namespace': 'aws:autoscaling:launchconfiguration',
+                        'OptionName': 'IamInstanceProfile',
+                        'Value': 'aws-elasticbeanstalk-ec2-role'
+                    }, 
+                    {
+                        'Namespace': 'aws:elasticbeanstalk:environment',
+                        'OptionName': 'EnvironmentType',
+                        'Value': 'SingleInstance'
+                    }
+                ]
+            )
+
+    except Exception as ex:
+        print(ex)
+        return False
+    return True
+
+def create_application(project_id):
+    get_s3_credentials()
+    env_name = 'your_env_name'
+    check_result = check_env_exists(env_name)
+    if not check_result:
+        return { 'result': False, 'error': 'Could not create app for some reason.'}
+
+    # Create deployment version
+    version_label = '{0}_{1}'.format(env_name, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    version = eb_client.create_application_version(
+        ApplicationName = aws_application_name, 
+        VersionLabel = version_label,
+        SourceBundle = {
+            'S3Bucket': app_bucket_name,
+            'S3Key': env_name + '.zip'
+        }
+    )
+    return {
+        'result': True,
+        'version_label': version_label
+    }
+```
+
+The first function is used for checking if the environment exists. This function maybe very useful if you create both environment (actual application) and application version programmatically.
+
+### Deploy the application version
+
+Deploy the application using the version lable you've got from the previous step.
+
+```
+def deploy_application(version_label):
+
+    env_name = 'your_env_name'
+
+    deploy_result = eb_client.update_environment(
+        ApplicationName = aws_application_name,
+        EnvironmentName = env_name,
+        VersionLabel = version_label
+    )
+    return {
+        'result': True, 
+        'app_url': 'http://{0}.{1}.elasticbeanstalk.com'.format(env_name, your_region)
+    }
+```
+
+### Check the status
+
+The deployment process is not fast, and can take some time (usually several minutes). So, it makes sense to check the app's status:
+
+```
+def check_application_state():
+    get_s3_credentials()
+    env_name = get_env_name(env_name)
+    env_list = eb_client.describe_environments(
+            ApplicationName = aws_application_name,
+            EnvironmentNames = [
+                env_name
+            ]
+        )
+    env_object = env_list['Environments'][0] if len(env_list['Environments']) else None
+    if env_object is not None:
+        return {
+            'result': True,
+            'state': env_object['Status'].lower(),
+            'health': env_object['Health'].lower()
+        }
+    return {
+        'result': False,
+        'error': 'Cannot obtain the application state. Maybe it\'s not been yet deployed.'
+    }
+```
+An AWS application has 2 important properties: status and health. The most important is health, the description from the official documentations:
+
+- **Red** : Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment.
+- **Yellow** : Indicates that something is wrong. Occurs when two consecutive failures occur for an environment.
+- **Green** : Indicates the environment is healthy and fully functional.
+- **Grey** : Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an UpdateEnvironment or RestartEnvironment request.
