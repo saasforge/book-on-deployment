@@ -14,7 +14,7 @@ Another opportunity is to register on YC Startup School, they have a partnership
 # Authors
 ## SaaS Forge
 
-[SaaS Forge](https://www.saasforge.dev) is a collection of SaaS application templates. You can create and run your SaaS application in minutes. Check boilerplates:
+[SaaS Forge](https://www.saasforge.dev) is a collection of SaaS application templates for Python(Flask)/Vue/PostgreSQL. You can create and run your SaaS application in minutes. Check boilerplates:
 - [Free Basic boilerplate](https://www.saasforge.dev/templates/free-basic-saas-template) - dashboard UI, database models, user register/login/confirmation, API
 - [SaaS Starter Kit](https://www.saasforge.dev/templates/starter-saas-kit) - the same as a free app template, plus subscription integration with Stripe and Mailchimp
 - [Product Website App](https://www.saasforge.dev/templates/product-website-template) - fully customizable product website with a landing page, pricing page, FAQs, blog + admin console to manage FAQs and blogs. Every page has a working form for collecting emails, integrated with Mailchimp.
