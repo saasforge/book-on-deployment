@@ -28,12 +28,10 @@
   * Create an appplication and deploy
   * Preparing app for a deployment (Flask-based apps)
   * Custom domain and SSL
-  * Complications
-    * CI using bitbucket
+  * Programmatic deployment (Python)
 * Appendix
   * How to save on hosting
     * AWS Elastic Beanstalk
-  * How to choose a hosting provider (AWS vs Heroku)
   * Authors
     * SaaS Forge - where your next SaaS starts.
   
