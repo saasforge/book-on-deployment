@@ -21,7 +21,6 @@
       * Redirection from HTTP to HTTPS
     * Complications
       * Several profiles at once
-      * Subdomains
     * Programmatic deployment (Python)
 * Chapter II. Heroku
   * Everything starts from account
