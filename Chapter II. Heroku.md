@@ -121,3 +121,62 @@ Below is the example of providing data in Namecheap console:
 After you're done, come back to the Heroku console and click the **Refresh status** button (it may take some time to update DNS records).
 
 :point_right: **SSL certificate is created and updated automatically by Heroku.**
+
+## Programmatic deployment (Python)
+
+Heroku doesn't have a Python interface, so we just use their API. The code below is in Python:
+
+```
+heroku_session = None
+heroku_url = 'https://api.heroku.com'
+
+def get_heroku_credentials():
+    global heroku_session
+    if heroku_session is None:
+        heroku_headers = {'Accept': 'application/vnd.heroku+json; version=3.cedar-acm',
+            'Content-Type': 'application/json'}
+
+        heroku_session = requests.session()
+        heroku_session.headers.update(heroku_headers)
+        heroku_session.auth = ('', 'API_key')
+        result_auth = heroku_session.get(heroku_url + '/account/rate-limits')
+        
+def get_response_json(response):
+    res_json = response.content.decode('utf8').replace("'", '"')
+    return json.loads(res_json)
+    
+def deploy_to_heroku(env_name, app_id, app_name):
+    get_heroku_credentials()
+
+    # Create app build
+    tar_url = 'https://s3.your_region.amazonaws.com/apps_bucket/{0}.tar.gz'.format(env_name)
+    url = heroku_url + '/apps/' + app_id + '/builds'
+    payload = {
+        'source_blob': {
+            'url': tar_url
+        },
+        'buildpacks': [
+            {
+                'name': 'heroku/nodejs'
+            },
+            {
+                'name': 'heroku/python'
+            }]
+    }
+
+    res_deploy = heroku_session.request('post', url, data=json.dumps(payload))
+    if res_deploy.ok:
+        res_data = get_response_json(res_deploy)
+    return {
+        'result': res_deploy.ok,
+        'status': res_data['status'],
+        'app_url': 'https://{0}.herokuapp.com/'.format(app_name),
+        'last_build_id': res_data['id']
+    }
+```
+
+The first step is, as usual, getting credentials. You have your API key (go to your account page, then click the **Account** tab and scroll till the **API key** section). Using your API key, you create a session and then use it to do other operations.
+
+Heroku can create a working application only from the archived app, and this archive should be tar. So, assuming you somehow managed to create tar.gz archive from your app and put it in some public access (we use Amazon S3 for this purpose).
+
+When you send the POST request to *apps/app_name/builds* Heroku endpoint you pass the URL to your tar.gz file. If deploy is done successfully, the response has the *ok* property what should be True, else False. The response.content is a text and it has to be parsed to JSON if you want to get all its values.
